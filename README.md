@@ -11,7 +11,6 @@ psql -W -U sgpostgres -p 5432 -h SG-task-1109-pgsql-master.servers.mongodirector
 
 username password in https://console.scalegrid.io/postgresqlclusters/1109/clusterDetails
 to test entries in table, once logged in then type:
- '''
- /c green
-  SELECT * from products;
-'''
+ 
+1. /c green
+2. SELECT * from products;
