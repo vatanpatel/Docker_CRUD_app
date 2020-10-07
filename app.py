@@ -1,17 +1,22 @@
+# Let us start with importing all the libraries.
+
 import pandas as pd
 import numpy as np
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
-import yaml
+from flask_cors import CORS                                     
+import yaml                                                     
 
-app = Flask(__name__)
-db_config = yaml.load(open('database.yaml'))
-app.config['SQLALCHEMY_DATABASE_URI'] = db_config['uri']
-db = SQLAlchemy(app)
+
+app = Flask(__name__)                                           # Creating the app
+db_config = yaml.load(open('database.yaml'))                    # Saving the database location from the database.yaml file 
+app.config['SQLALCHEMY_DATABASE_URI'] = db_config['uri']        # Let's add the database to our app
+db = SQLAlchemy(app)                                            # This will help us insert/query from the db
 CORS(app)
 
-class Product(db.Model):           ### User
+# Let us define a class with class and instance variables
+
+class Product(db.Model):                                        
     __tablename__ = "products"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
@@ -41,14 +46,23 @@ class Product(db.Model):           ### User
         return '{} {} {} {} {} {} {} {} {} {} {}'.format(self.id, self.name, self.brand_name, self.regular_price_value, self.offer_price_value, self.currency, self.classification_l1,
                                                self.classification_l2, self.classification_l3, self.classification_l4, self.image_url)
 
+# We would render the home.html file @ localhost:5000/ 
+# We can edit the content of the home.html file to create any home page.
+
 @app.route('/')
 def index():
     return render_template('home.html')
 
+# Now let us start defining methods @ localhost:5000/data
+# We define two methods. GET and POST. 
+# GET method would require no parameters and would return all the products from our table in the postgresql database.
+# The POST method can be used to add product entris in the table. We will be able to input a json format dictionary @ localhost:5000/data and
+# our application will add that entry to our database.
+
 @app.route('/data', methods=['POST', 'GET'])
 def data():
     
-    # POST a data to database
+    # POST an entry to the database
     if request.method == 'POST':
         body = request.json
         name = body['name']
@@ -81,14 +95,12 @@ def data():
             'image_url': image_url
         })
     
-    # GET all data from database & sort by id
+    # GET all data from database sorted by id
     if request.method == 'GET':
-        #data = Product.query.all()
         data = Product.query.order_by(Product.id).all()
         print(data)
         dataJson = []
         for i in np.arange(len(data)):
-            # print(str(data[i]).split('/'))
             dataDict = {
                 'id': str(data[i]).split(' ')[0],
                 'name': str(data[i]).split(' ')[1],
@@ -104,6 +116,13 @@ def data():
             }
             dataJson.append(dataDict)
         return jsonify(dataJson)
+
+# Now we define 3 more methods @ LOCALHOST:5000/data/<string> 
+# We will be able to query an entry using GET method with a specific id entered like: LOCALHOST:5000/data/100
+# We will be able to update the data using PUT method. We will require a dictionary similar to POST method to update an entry using it's id. 
+# The product with the specific id should be present in the table to update.
+# We will also define a method to Delete entries using DELETE method and specifying the product id after /data/
+
 
 @app.route('/data/<string:id>', methods=['GET', 'DELETE', 'PUT'])
 def onedata(id):
@@ -162,6 +181,8 @@ def onedata(id):
         editData.image_url = new_image_url
         db.session.commit()
         return jsonify({'status': 'Data '+id+' is updated from PostgreSQL!'})
+
+# We host this locally at localhost:5000. This is where our container image will run.
 
 if __name__ == '__main__':
     app.debug = True
