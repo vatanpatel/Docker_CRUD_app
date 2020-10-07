@@ -1,3 +1,4 @@
+# These are the libraries that are necessary for our app to run
 Flask==1.1.2
 Flask-Cors==3.0.9
 Flask-SQLAlchemy==2.4.4

@@ -1,1 +1,4 @@
 uri: 'postgresql://sgpostgres:wNP0xEGN+XALop6s@SG-task-1109-pgsql-master.servers.mongodirector.com/green'
+
+# Here we are defining uri variable as the url for our cloud database named green. 
+#There we have our products table where we keep the entried for all of our products.
