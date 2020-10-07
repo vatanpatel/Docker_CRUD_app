@@ -68,11 +68,29 @@
 #
 
 [![Step 1: Get All Products](https://ibb.co/m9wvNMS)](https://ibb.co/m9wvNMS)
+
+#
+
 [![Step 2: Add data using Post](https://ibb.co/X2SHZtF)](https://ibb.co/X2SHZtF)
+
+#
+
 [![Step 3: Check if the data is added](https://ibb.co/9hCL43m)](https://ibb.co/9hCL43m)
+
+#
+
 [![Step 4: Delete the newly created data](https://ibb.co/2n8H2cB)](https://ibb.co/2n8H2cB)
+
+#
+
 [![Step 5: Check if update is made](https://ibb.co/1X7PPMT)](https://ibb.co/1X7PPMT)
+
+#
+
 [![Step 6: Delete the newly created data](https://ibb.co/whQp5cB)](https://ibb.co/whQp5cB)
+
+#
+
 [![Step 7: Check if the data is deleted](https://ibb.co/SwWcHk9)](https://ibb.co/SwWcHk9)
 
 #
