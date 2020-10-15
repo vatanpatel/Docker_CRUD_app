@@ -1,4 +1,18 @@
-# Tutorial
+# Welcome
+Our task is to create a REST API using Python and host it locally using Docker.
+We will be working on two of the most important concepts of software engineering for this task. APIs and Containerization.
+
+We have a customer for which we have dump of 5000 products in JSON format. These products are sold on their E-Commerce platform. The data contains the product name, price and other information. The goal of this task is to allow the user to interact with a database of products using APIs which are available on localhost via Docker.
+
+We have a CSV file. It is a list of ~5000 e-commerce products and its information.
+We host the data on cloud as postgresql database.
+We create an API that allows the user to do basic CRUD operations on the data.
+The user can Create new objects, Read the data, Update or Delete the objects in the database you selected before.
+We then Dockerize our REST API application. The docker run command would deploy the API on localhost at a 5000 port. The user can then use the API endpoints to perform CRUD operations.
+We also test the endpoints using Postman or Curl and share screenshots.
+
+
+### How to use:
 
 1. Download and install  [Docker](https://www.docker.com/get-started).
 
@@ -66,6 +80,7 @@
     ```
 
 #
+### Screenshots
 
 [![Step 1: Get All Products](https://ibb.co/m9wvNMS)](https://ibb.co/m9wvNMS)
 
